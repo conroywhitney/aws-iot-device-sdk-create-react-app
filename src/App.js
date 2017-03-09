@@ -16,6 +16,9 @@ class App extends Component {
         <p>
           Specifically, this is in regards to <a href="https://github.com/aws/aws-iot-device-sdk-js/issues/117">Issue #117</a> and <a href="https://github.com/aws/aws-iot-device-sdk-js/pull/118">Pull Requst #118</a> of the <a href="https://github.com/aws/aws-iot-device-sdk-js">aws-iot-device-sdk-js</a> repository.
         </p>
+        <p>
+          This project is avilable throught the <a href="https://opensource.org/licenses/MIT">MIT license</a> on <a href="https://github.com/conroywhitney/aws-iot-device-sdk-create-react-app">github</a>.
+        </p>
       </div>
     );
   }
