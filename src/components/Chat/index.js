@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
-import { pick } from 'ramda'
+import { append, compose, evolve, map, pick, takeLast } from 'ramda'
+
+import Message from './Message'
 
 import IoT from '../../aws/iot'
 import logger from '../../logger'
+import { MAX_MESSAGES } from '../../constants'
+import messageFixtures from '../../fixtures/messages'
+
+import './styles.css'
 
 class Chat extends Component {
+  constructor (props) {
+    super(props)
+
+    // start with 25 fake messages in the chat
+    this.state = {
+      messages: messageFixtures(25)
+    }
+  }
+
   componentWillMount () {
     logger('componentWillMount', 'connecting to IoT')
 
@@ -20,6 +35,32 @@ class Chat extends Component {
     logger('componentWillMount', 'connected to IoT')
   }
 
+  componentDidMount () {
+    this.scrollToBottom()
+
+    // add fake messages once per second
+    setInterval(() =>
+      this.onIoTMessage(messageFixtures(1)[0]),
+      5000
+    )
+  }
+
+  componentWillUpdate () {
+    const messagesDOM = this.refs.messages
+
+    this.chatWindowAlreadyAtBottom = (messagesDOM.scrollTop + messagesDOM.offsetHeight) === messagesDOM.scrollHeight
+  }
+
+  componentDidUpdate () {
+    if (this.chatWindowAlreadyAtBottom) this.scrollToBottom()
+  }
+
+  scrollToBottom () {
+    const messagesDOM = this.refs.messages
+
+    messagesDOM.scrollTop = messagesDOM.scrollHeight
+  }
+
   componentWillUnmount () {
     logger('componentWillUnmount', 'disconnecting from IoT')
 
@@ -30,11 +71,30 @@ class Chat extends Component {
 
   onIoTMessage (message) {
     logger('onIoTMessage', message)
+
+    this.setState(
+      evolve({
+        messages: compose(
+          takeLast(MAX_MESSAGES),
+          append(message)
+        )
+      }, this.state)
+    )
   }
 
   render () {
     return (
-      <div />
+      <div className='Chat-container'>
+        <div className='Chat-messages'>
+          <div className='Chat-messages-wrapper' ref='messages'>
+            {map(message =>
+              <Message key={message.id} {...message} />,
+              this.state.messages
+            )}
+          </div>
+        </div>
+        <div className='Chat-footer' />
+      </div>
     )
   }
 }
