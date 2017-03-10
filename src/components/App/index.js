@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 
-import credentials from './aws/credentials'
+import credentials from '../../aws/credentials'
 
-import Chat from './Chat'
-import Header from './Header'
+import Chat from '../Chat'
+import Header from '../Header'
 
-import './App.css'
+import './styles.css'
 
 class App extends Component {
   render () {
     return (
-      <div className='App'>
+      <div className='App-container'>
         <Header />
         <Chat credentials={credentials} topic='example/chat' />
       </div>
