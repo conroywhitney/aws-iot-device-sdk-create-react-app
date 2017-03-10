@@ -5,6 +5,12 @@
   "dependencies": {
     "aws-iot-device-sdk": "^1.0.14",
     "dotenv": "^4.0.0",
+    "eslint": "^3.17.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "ramda": "^0.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
@@ -15,6 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src/**/*.js' --max-warnings 0 && echo 'linted \\xF0\\x9F\\x91\\x8D\\n'"
   }
 }
