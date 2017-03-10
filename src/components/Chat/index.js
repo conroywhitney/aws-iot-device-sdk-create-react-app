@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { pick } from 'ramda'
 
-import IoT from './aws/iot'
-import logger from './logger'
+import IoT from '../../aws/iot'
+import logger from '../../logger'
 
 class Chat extends Component {
   componentWillMount () {
