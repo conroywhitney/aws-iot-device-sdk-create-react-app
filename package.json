@@ -1,7 +1,7 @@
 {
-  "name": "aws-iot-device-sdk-create-react-app",
+  "name": "@serverless-buzz/chat-example",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "dependencies": {
     "aws-iot-device-sdk": "^1.0.14",
     "dotenv": "^4.0.0",
