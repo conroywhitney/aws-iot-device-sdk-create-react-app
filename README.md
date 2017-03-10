@@ -19,4 +19,4 @@ Authored by Conroy Whitney of [Serverless.buzz](https://serverless.buzz) 🐝
 
 Copyright (c) 2017 Conroy Whitney. Licensed under the MIT license.
 
-Bee icon provided free by [EmojiOne](http://emojione.com/)
+Bee icon provided free by [EmojiOne](http://emojione.com/) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
