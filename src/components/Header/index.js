@@ -8,7 +8,7 @@ export default function Header () {
     <div>
       <div className='Header-container'>
         <img src={logo} className='Header-logo' alt='logo' />
-        <h2><code>aws-iot-device-sdk / create-react-app</code></h2>
+        <div className='Header-text'>React Chat w/ AWS IoT</div>
       </div>
     </div>
   )
