@@ -14,6 +14,7 @@ class Chat extends Component {
   constructor (props) {
     super(props)
 
+    // start with 25 fake messages in the chat
     this.state = {
       messages: messageFixtures(25)
     }
@@ -32,6 +33,32 @@ class Chat extends Component {
     })
 
     logger('componentWillMount', 'connected to IoT')
+  }
+
+  componentDidMount () {
+    this.scrollToBottom()
+
+    // add fake messages once per second
+    setInterval(() =>
+      this.onIoTMessage(messageFixtures(1)[0]),
+      5000
+    )
+  }
+
+  componentWillUpdate () {
+    const messagesDOM = this.refs.messages
+
+    this.chatWindowAlreadyAtBottom = (messagesDOM.scrollTop + messagesDOM.offsetHeight) === messagesDOM.scrollHeight
+  }
+
+  componentDidUpdate () {
+    if (this.chatWindowAlreadyAtBottom) this.scrollToBottom()
+  }
+
+  scrollToBottom () {
+    const messagesDOM = this.refs.messages
+
+    messagesDOM.scrollTop = messagesDOM.scrollHeight
   }
 
   componentWillUnmount () {
@@ -59,7 +86,7 @@ class Chat extends Component {
     return (
       <div className='Chat-container'>
         <div className='Chat-messages'>
-          <div className='Chat-messages-wrapper'>
+          <div className='Chat-messages-wrapper' ref='messages'>
             {map(message =>
               <Message key={message.id} {...message} />,
               this.state.messages
