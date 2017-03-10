@@ -15,7 +15,7 @@ class Chat extends Component {
     super(props)
 
     this.state = {
-      messages: messageFixtures(10)
+      messages: messageFixtures(25)
     }
   }
 
@@ -59,10 +59,12 @@ class Chat extends Component {
     return (
       <div className='Chat-container'>
         <div className='Chat-messages'>
-          {map(message =>
-            <Message key={message.id} {...message} />,
-            this.state.messages
-          )}
+          <div className='Chat-messages-wrapper'>
+            {map(message =>
+              <Message key={message.id} {...message} />,
+              this.state.messages
+            )}
+          </div>
         </div>
         <div className='Chat-footer' />
       </div>

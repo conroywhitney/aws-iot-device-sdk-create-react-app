@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .Chat-messages {
@@ -10,9 +11,14 @@
   flex-direction: column;
   flex: 1;
   justify-content: flex-end;
-  padding: 2rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.Chat-messages-wrapper {
+  flex: 0 0 auto;
+  height: 100%;
+  overflow: scroll;
+  padding: 0 1rem 1rem 1rem;
 }
 
 .Chat-message {
