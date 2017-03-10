@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import IoT from './aws/iot'
 
-const logger = () => (...message) => console.log('App', ...message)
+const logger = (...message) => console.log('App', ...message)
 
 // these variables live in the `.env` file
 const credentials = {
