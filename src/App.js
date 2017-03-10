@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import IoT from './aws/iot'
+
+const logger = () => (...message) => console.log('App', ...message)
 
 class App extends Component {
+  connectIoT() {
+    const credentials = {
+      iotEndpoint: '',
+      region: '',
+      awsAccessKey: '',
+      awsSecretAccessKey: '',
+      sessionToken: ''
+    }
+    const topic = 'example/topic'
+    const handlers = {
+      onClose: () => logger('handler', 'onClose'),
+      onConnect: () => logger('handler', 'onConnect'),
+      onMessage: message => logger('handler', 'onMessage', message)
+    }
+
+    IoT.connect({ credentials, topic, handlers })
+  }
+
   render() {
+    // this.connectIoT()
+
     return (
       <div className="App">
         <div className="App-header">
