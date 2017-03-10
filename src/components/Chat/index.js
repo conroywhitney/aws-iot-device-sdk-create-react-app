@@ -1,10 +1,24 @@
 import React, { Component } from 'react'
-import { pick } from 'ramda'
+import { append, compose, evolve, map, pick, takeLast } from 'ramda'
+
+import Message from './Message'
 
 import IoT from '../../aws/iot'
 import logger from '../../logger'
+import { MAX_MESSAGES } from '../../constants'
+import messageFixtures from '../../fixtures/messages'
+
+import './styles.css'
 
 class Chat extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      messages: messageFixtures(10)
+    }
+  }
+
   componentWillMount () {
     logger('componentWillMount', 'connecting to IoT')
 
@@ -30,11 +44,28 @@ class Chat extends Component {
 
   onIoTMessage (message) {
     logger('onIoTMessage', message)
+
+    this.setState(
+      evolve({
+        messages: compose(
+          takeLast(MAX_MESSAGES),
+          append(message)
+        )
+      }, this.state)
+    )
   }
 
   render () {
     return (
-      <div />
+      <div className='Chat-container'>
+        <div className='Chat-messages'>
+          {map(message =>
+            <Message key={message.id} {...message} />,
+            this.state.messages
+          )}
+        </div>
+        <div className='Chat-footer' />
+      </div>
     )
   }
 }
