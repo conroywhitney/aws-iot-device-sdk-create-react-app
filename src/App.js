@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import IoT from './aws/iot'
+
+const logger = (...message) => console.log('App', ...message)
+
+// these variables live in the `.env` file
+const credentials = {
+  iotEndpoint: process.env.REACT_APP_AWS_IOT_ENDPOINT,
+  region: process.env.REACT_APP_AWS_IOT_REGION,
+  awsAccessKey: process.env.REACT_APP_AWS_IOT_ACCESS_KEY,
+  awsSecretAccessKey: process.env.REACT_APP_AWS_IOT_SECRET_ACCESS_KEY,
+  sessionToken: process.env.REACT_APP_AWS_IOT_SESSION_TOKEN
+}
+
+const handlers = {
+  onClose: () => logger('handler', 'onClose'),
+  onConnect: () => logger('handler', 'onConnect'),
+  onMessage: message => logger('handler', 'onMessage', message)
+}
+
+const topic = 'example/topic'
 
 class App extends Component {
   render() {
+    IoT.connect({ credentials, handlers, topic })
+
     return (
       <div className="App">
         <div className="App-header">
