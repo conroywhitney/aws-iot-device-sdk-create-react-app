@@ -5,7 +5,7 @@ const logger = () => (...message) => console.log('AWS IoT', ...message)
 const IoT = {
   client: null,
   iotTopic: null,
-  connect: ({ credentials, topic, handlers }) => {
+  connect: ({ credentials, handlers, topic }) => {
     const {
       iotEndpoint,
       region,
@@ -13,6 +13,7 @@ const IoT = {
       awsSecretAccessKey,
       sessionToken
     } = credentials
+
     const { onClose, onConnect, onMessage } = handlers
 
     IoT.iotTopic = topic
