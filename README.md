@@ -9,6 +9,25 @@ This chat application can be a starting point to understand how React, the Serve
 
 To learn more about the state of the serverless world, check out [Serverless.buzz](https://serverless.buzz) 🐝
 
+### Development
+To run this project locally:
+
+1. Clone the project: `git clone https://github.com/conroywhitney/serverless-buzz-chat-example.git
+`
+2. Install dependencies: `yarn`
+3. Add your AWS IoT credentials to a `.env` file:
+```
+  REACT_APP_AWS_IOT_ENDPOINT=
+  REACT_APP_AWS_IOT_REGION=
+  REACT_APP_AWS_IOT_ACCESS_KEY=
+  REACT_APP_AWS_IOT_SECRET_ACCESS_KEY=
+  REACT_APP_AWS_IOT_SESSION_TOKEN=
+```
+(Optionally, you can implement an endpoint like described in the tutorial [How To Build A Serverless Notification System on AWS](https://serverless.com/blog/serverless-notifications-on-aws/))
+
+4. Start the local dev server `yarn start`
+5. Navigate to `localhost:3000`
+
 ### Credits
 
 This project builds upon the ideas introduced in [How To Build A Serverless Notification System on AWS](https://serverless.com/blog/serverless-notifications-on-aws/) from the [Serverless Blog](https://serverless.com/blog/). Many thanks to the teams at [Amazon Web Services](https://github.com/aws), [Serverless](https://github.com/serverless), and [Facebook](https://github.com/facebook) for making the technologies that make this type of application possible.
